@@ -1,6 +1,6 @@
 // src/transaction/transaction.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Vendor } from './vendor.entity';
+import { Vendor } from '../vendor/vendor.entity';
 
 export type TransactionStatus = 'held' | 'released' | 'paid';
 

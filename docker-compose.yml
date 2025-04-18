@@ -1,23 +1,6 @@
 version: '3.8'
 
 services:
-  nest-app:
-    build: .
-    container_name: nest-app
-    ports:
-      - '3000:3000'
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_HOST: postgres
-      DATABASE_PORT: 5433
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_NAME: nestdb
-    volumes:
-      - .:/app
-    command: npm run start:dev
-
   postgres:
     image: postgres:15
     container_name: postgres
@@ -30,5 +13,23 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  nest-app:
+    build: .
+    container_name: nest-app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: nestdb
+    volumes:
+      - .:/app
+    command: npm run start:dev
+
 volumes:
   pgdata:
