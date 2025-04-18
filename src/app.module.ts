@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { VendorModule } from './vendor/vendor.module';
 import { TransactionModule } from './transaction/transaction.module';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TransactionModule } from './transaction/transaction.module';
     }),
     VendorModule,
     TransactionModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
