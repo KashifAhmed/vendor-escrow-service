@@ -23,7 +23,7 @@ import { StripeModule } from './stripe/stripe.module';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false, // Disabled because we're using migrations
     }),
     VendorModule,
     TransactionModule,

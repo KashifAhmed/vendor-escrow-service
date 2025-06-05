@@ -2,26 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Vendor } from './vendor.entity';
-import { StripeService } from '../stripe/stripe.service';
 import { CreateVendorDto } from './dto/create-vendor.dto';
 import { UpdateVendorDto } from './dto/update-vendor.dto';
 
 @Injectable()
 export class VendorService {
   constructor(
-    private readonly stripeService: StripeService,
     @InjectRepository(Vendor)
     private readonly vendorRepository: Repository<Vendor>,
   ) {}
 
   async createVendor(data: CreateVendorDto) {
-    const customer = await this.stripeService.createCustomer(
-      data.email,
-      data.name,
-    );
     const vendor = this.vendorRepository.create({
       ...data,
-      stripe_account_id: customer.id,
       escrow_balance: 0,
       available_balance: 0,
     });

@@ -5,10 +5,11 @@ import { StripeService } from 'src/stripe/stripe.service';
 import { Vendor } from './vendor.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Transaction } from 'src/transaction/transaction.entity';
+import { VendorSubscriber } from './vendor.subscriber';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Vendor, Transaction])],
-  providers: [VendorService, StripeService],
+  providers: [VendorService, StripeService, VendorSubscriber],
   controllers: [VendorController],
 })
 export class VendorModule {}

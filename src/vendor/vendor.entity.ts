@@ -7,7 +7,13 @@ export class Vendor {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
+  email: string;
+
+  @Column({ nullable: false })
+  name: string;
+
+  @Column({ nullable: true })
   stripe_account_id: string;
 
   @Column({ type: 'decimal', default: 0 })
