@@ -16,6 +16,6 @@ export class Vendor {
   @Column({ type: 'decimal', default: 0 })
   available_balance: number;
 
-  @OneToMany(() => Transaction, transaction => transaction.vendor)
+  @OneToMany(() => Transaction, (transaction) => transaction.vendor)
   transactions: Transaction[];
 }
