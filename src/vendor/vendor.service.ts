@@ -14,6 +14,19 @@ export class VendorService {
     private readonly stripeService: StripeService,
   ) {}
 
+  async getAllVendors() {
+    return this.vendorRepository.find({
+      select: [
+        'id',
+        'email',
+        'name',
+        'stripe_account_id',
+        'escrow_balance',
+        'available_balance',
+      ],
+    });
+  }
+
   async createVendor(data: CreateVendorDto) {
     const vendor = this.vendorRepository.create({
       ...data,

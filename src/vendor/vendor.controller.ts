@@ -9,6 +9,7 @@ import {
   HttpStatus,
   UsePipes,
   ValidationPipe,
+  Get,
 } from '@nestjs/common';
 import { VendorService } from './vendor.service';
 import { CreateVendorDto } from './dto/create-vendor.dto';
@@ -18,6 +19,15 @@ import { ApiBody } from '@nestjs/swagger';
 @Controller('vendor')
 export class VendorController {
   constructor(private readonly vendorService: VendorService) {}
+
+  @Get()
+  async getAllVendors() {
+    try {
+      return await this.vendorService.getAllVendors();
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
 
   @Post()
   @UsePipes(new ValidationPipe({ whitelist: true }))
